@@ -1,0 +1,17 @@
+.nav {
+    grid-area: n;
+    background-color: darkgrey;
+    padding: 20px;
+}
+
+/*.item a:hover{*/
+/*    color: peru;*/
+/*}*/
+/*.item a {*/
+/*    color: snow;*/
+/*    text-decoration: none;*/
+/*}*/
+/* .item a.activeLink {*/
+/*    color: deeppink;*/
+/*}*/
+

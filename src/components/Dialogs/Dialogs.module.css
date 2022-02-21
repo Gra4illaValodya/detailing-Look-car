@@ -1,0 +1,25 @@
+
+.dialogs {
+    display: grid;
+
+    grid-template-columns: 6fr 6fr;
+    grid-template-areas:
+    "user message message";
+}
+.dialogElement {
+    grid-area: user;
+}
+.dialogItem {
+
+}
+.dialogItem .active {
+    color: gold;
+}
+
+.messageElement {
+    grid-area: message;
+}
+.messageItem {
+
+}
+
