@@ -26,7 +26,7 @@ const MyPosts = (props) => {
             <textarea className={style.inputTextPost} ref={newPostElement}></textarea>
         </div>
         <div>
-            <button className={style.inputTextPostButton}  type="button" onClick={ (text) => { alert("ww" + text)}  }>Add Post
+            <button className={style.inputTextPostButton}   onClick={ props.addPost }>Add Post
             </button></div>
 
 

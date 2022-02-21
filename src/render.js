@@ -9,7 +9,7 @@ export let rerenderEntireTree = (state) => {
     ReactDOM.render(
         <React.StrictMode>
 
-            <App state={state}  ></App>
+            <App state={state}  addPost={addPost} ></App>
 
         </React.StrictMode>,
         document.getElementById('root')

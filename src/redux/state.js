@@ -28,14 +28,15 @@ const state = {
 
 
 
-// export let addPost = (postText) => {
-//     const newPost = {
-//         id: 5,
-//         postMessageItem: postText,
-//         postLikeItem: 3
-//     };
-//     state.profilePage.postElementData.push(newPost);
-//     rerenderEntireTree(state)
-// }
+export let addPost = (postText) => {
+
+    const newPost = {
+        id: 5,
+        postMessageItem: postText,
+        postLikeItem: 0
+    };
+    state.profilePage.postElementData.push(newPost);
+    rerenderEntireTree(state)
+}
 
 export default state
