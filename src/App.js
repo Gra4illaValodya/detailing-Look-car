@@ -9,9 +9,6 @@ import {BrowserRouter} from "react-router-dom";
 import {Routes} from "react-router";
 
 
-import {addPost} from "./redux/state";
-
-
 const App = (props) => {
 
 
@@ -24,14 +21,17 @@ const App = (props) => {
 
                 <div className="appContent">
 
-                    <Routes >
+                    <Routes>
 
-                        <Route path="/profile" element={<Profile postElementData={props.state.profilePage.postElementData}
-                        addPost={props.addPost}/>}/>
+                        <Route path="/profile"
+                               element={<Profile postElementData={props.state.profilePage.postElementData}
+                                                 addNewPost={props.addNewPost}/>}/>
 
-                        <Route path="/dialog/*" element={<Dialogs dialogElementData={props.state.dialogPage.dialogElementData}
-                                                 messageElementData={props.state.dialogPage.messageElementData}/>}/>
-                </Routes>
+                        <Route path="/dialog/*"
+                               element={<Dialogs dialogElementData={props.state.dialogPage.dialogElementData}
+                                                 messageElementData={props.state.dialogPage.messageElementData}
+                                                 addMessage={props.addMessage}/>}/>
+                    </Routes>
 
                 </div>
 

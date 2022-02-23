@@ -5,6 +5,12 @@ import PostElement from "./PostElement/PostElement";
 
 const MyPosts = (props) => {
 
+    const addNewPost = () => {
+        debugger
+        let newPostText = newPostElement.current.value;
+        props.addNewPost(newPostText)
+        newPostElement.current.value = ''
+    };
 
     let  postElement = props.postElementData
         .map(postElementMap => <PostElement  postMessageItem={postElementMap.postMessageItem} postLikeItem={postElementMap.postLikeItem} id={postElementMap.id} />)
@@ -13,10 +19,7 @@ const MyPosts = (props) => {
 
     const newPostElement = React.createRef();
 
-    // const addPost = () => {
-    //     let newPostText = newPostText.current.value;
-    //     props.addPost(newPostText)
-    // };
+
 
 
     return <div className={style.myPostsElement}>
@@ -26,7 +29,7 @@ const MyPosts = (props) => {
             <textarea className={style.inputTextPost} ref={newPostElement}></textarea>
         </div>
         <div>
-            <button className={style.inputTextPostButton}   onClick={ props.addPost }>Add Post
+            <button className={style.inputTextPostButton} onClick={addNewPost} >Add Post
             </button></div>
 
 

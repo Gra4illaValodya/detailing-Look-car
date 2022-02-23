@@ -10,7 +10,7 @@ const Profile = (props) => {
 
       <AvaDescription />
 
-        <MyPosts postElementData={props.postElementData} addPost={props.addPost} />
+        <MyPosts postElementData={props.postElementData} addNewPost={props.addNewPost} />
     </div>
 
 

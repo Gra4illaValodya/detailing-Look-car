@@ -26,10 +26,17 @@ const state = {
     }
 }
 
+export let addMessage = (messageText) => {
+    const newMessage = {
+        id: 6,
+        messageItem: messageText,
+    }
+    state.dialogPage.messageElementData.push(newMessage)
+    rerenderEntireTree(state)
+}
 
-
-export let addPost = (postText) => {
-
+export let addNewPost = (postText) => {
+debugger
     const newPost = {
         id: 5,
         postMessageItem: postText,
@@ -37,6 +44,7 @@ export let addPost = (postText) => {
     };
     state.profilePage.postElementData.push(newPost);
     rerenderEntireTree(state)
+
 }
 
 export default state
