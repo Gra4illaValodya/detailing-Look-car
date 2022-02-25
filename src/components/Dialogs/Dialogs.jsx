@@ -2,36 +2,51 @@ import React from "react";
 import style from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 import DialogItem from "./DialogItem/DialogsItem";
+import MessageItem from "./MessageItem/MessageItem";
 
 
-
-const MessageItem = (props) => {
-    return <div className={style.messageItem}>{props.messageItem}</div>
-}
 const Dialogs = (props) => {
-const newMessageElement = React.createRef()
 
-const addMessage = () => {
+    const addMessage = () => {
         let newMessageText = newMessageElement.current.value
-    props.addMessage(newMessageText)
+        props.addMessage(newMessageText)
     }
 
+    const freshText  = () => {
+        let text = newMessageElement.current.value;
+        props.updateMessageText(text)
+
+    }
     let dialogElement = props.dialogElementData
-        .map(dialogElement => <DialogItem nameUserItem={dialogElement.nameUserItem} id={dialogElement.id}/>)
+        .map(dialogElementMap => <DialogItem nameUserItem={dialogElementMap.nameUserItem}
+                                          id={dialogElementMap.id}/>)
 
     let messageElement = props.messageElementData
-        .map(messageElementMap => <MessageItem messageItem={messageElementMap.messageItem} id={messageElementMap.id}/>)
-
+        .map(messageElementMap => <MessageItem messageItem={messageElementMap.messageItem}
+                                               id={messageElementMap.id}/>)
+    const newMessageElement = React.createRef()
     return <div className={style.dialogs}>
 
-        <div className={style.dialogElement}>{dialogElement}</div>
-        <div className={style.messageElement}>
+        <div className={style.dialogElement}>
+            {dialogElement}
+        </div>
 
+        <div className={style.messageElement}>
             {messageElement}
 
-        <div> <textarea ref={newMessageElement}></textarea> </div>
+            <div>
 
-        <div> <button onClick={addMessage}>add message</button> </div>
+                <textarea   onChange={freshText}
+                            className={style.inputTextMessage}
+                            ref={newMessageElement}
+                          value={props.textareaText}/>
+            </div>
+
+            <div>
+                <button onClick={addMessage}>
+                    add message
+                </button>
+            </div>
         </div>
 
     </div>

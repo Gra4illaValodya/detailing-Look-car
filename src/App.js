@@ -9,6 +9,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Routes} from "react-router";
 
 
+
 const App = (props) => {
 
 
@@ -25,12 +26,16 @@ const App = (props) => {
 
                         <Route path="/profile"
                                element={<Profile postElementData={props.state.profilePage.postElementData}
-                                                 addNewPost={props.addNewPost}/>}/>
+                                                 addNewPost={props.addNewPost}
+                                                 textareaText={props.state.profilePage.textareaText}
+                                                 updatePostText={props.updatePostText}    />}/>
 
                         <Route path="/dialog/*"
                                element={<Dialogs dialogElementData={props.state.dialogPage.dialogElementData}
                                                  messageElementData={props.state.dialogPage.messageElementData}
-                                                 addMessage={props.addMessage}/>}/>
+                                                 addMessage={props.addMessage}
+                                                 textareaText={props.state.dialogPage.textareaText}
+                                                 updateMessageText={props.updateMessageText}/>}/>
                     </Routes>
 
                 </div>

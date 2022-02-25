@@ -8,6 +8,7 @@ const state = {
             {id: 3, postMessageItem: "YOYOYOYo ", postLikeItem: 65},
             {id: 4, postMessageItem: "llllll ", postLikeItem: 3},
         ],
+        textareaText: "Valodia Zalypka"
     },
     dialogPage: {
         dialogElementData: [
@@ -16,6 +17,7 @@ const state = {
             {id: 3, nameUserItem: "Rulia"},
             {id: 4, nameUserItem: "Igor"},
         ],
+        
         messageElementData: [
             {id: 1, messageItem: "Hi bro what up?"},
             {id: 2, messageItem: "Not bat.I hear you are mother fucker, yes?"},
@@ -23,7 +25,16 @@ const state = {
             {id: 4, messageItem: "YOYOYOYO"},
             {id: 5, messageItem: "bibby"}
         ],
+        textareaText: "Вводите сообщение..."
     }
+}
+export let updatePostText = (postText) => {
+    state.profilePage.textareaText = postText
+    rerenderEntireTree(state)
+}
+export let updateMessageText = (messageText) => {
+    state.dialogPage.textareaText = messageText
+    rerenderEntireTree(state)
 }
 
 export let addMessage = (messageText) => {
@@ -36,7 +47,6 @@ export let addMessage = (messageText) => {
 }
 
 export let addNewPost = (postText) => {
-debugger
     const newPost = {
         id: 5,
         postMessageItem: postText,

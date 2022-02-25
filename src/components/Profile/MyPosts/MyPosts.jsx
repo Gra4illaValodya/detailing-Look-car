@@ -3,17 +3,27 @@ import style from './MyPosts.module.css'
 import PostElement from "./PostElement/PostElement";
 
 
+
 const MyPosts = (props) => {
 
     const addNewPost = () => {
-        debugger
         let newPostText = newPostElement.current.value;
         props.addNewPost(newPostText)
         newPostElement.current.value = ''
     };
 
+
+    const  freshText = () => {
+        let text = newPostElement.current.value;
+        props.updatePostText(text)
+
+
+    }
+
     let  postElement = props.postElementData
-        .map(postElementMap => <PostElement  postMessageItem={postElementMap.postMessageItem} postLikeItem={postElementMap.postLikeItem} id={postElementMap.id} />)
+        .map(postElementMap => <PostElement  postMessageItem={postElementMap.postMessageItem}
+                                             postLikeItem={postElementMap.postLikeItem}
+                                             id={postElementMap.id} />)
 
 
 
@@ -26,11 +36,17 @@ const MyPosts = (props) => {
         my posts
 
         <div className={style.addTextPost} >
-            <textarea className={style.inputTextPost} ref={newPostElement}></textarea>
+            <textarea  onChange={freshText}
+                       className={style.inputTextPost}
+                      ref={newPostElement}
+                      value={props.textareaText}/>
         </div>
         <div>
-            <button className={style.inputTextPostButton} onClick={addNewPost} >Add Post
-            </button></div>
+            <button className={style.inputTextPostButton}
+                    onClick={addNewPost}>
+                Add Post
+            </button>
+        </div>
 
 
         <div> {postElement} </div>
