@@ -10,6 +10,8 @@ const Dialogs = (props) => {
     const addMessage = () => {
         let newMessageText = newMessageElement.current.value
         props.addMessage(newMessageText)
+        props.updateMessageText('')
+
     }
 
     const freshText  = () => {
@@ -36,10 +38,11 @@ const Dialogs = (props) => {
 
             <div>
 
-                <textarea   onChange={freshText}
+                <textarea    value={props.textareaText}
+                             onChange={freshText}
                             className={style.inputTextMessage}
                             ref={newMessageElement}
-                          value={props.textareaText}/>
+                         />
             </div>
 
             <div>

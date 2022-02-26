@@ -1,4 +1,8 @@
-import {rerenderEntireTree} from "../render";
+let rerenderEntireTree = () => {
+    console.log("State change")
+}
+
+
 
 const state = {
     profilePage: {
@@ -28,33 +32,44 @@ const state = {
         textareaText: "Вводите сообщение..."
     }
 }
+
+
+
+window.state = state
+
 export let updatePostText = (postText) => {
     state.profilePage.textareaText = postText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 export let updateMessageText = (messageText) => {
     state.dialogPage.textareaText = messageText
-    rerenderEntireTree(state)
+    rerenderEntireTree()
 }
 
 export let addMessage = (messageText) => {
-    const newMessage = {
+    debugger
+    let newMessage = {
         id: 6,
         messageItem: messageText,
     }
     state.dialogPage.messageElementData.push(newMessage)
-    rerenderEntireTree(state)
+
+    rerenderEntireTree()
+
 }
 
-export let addNewPost = (postText) => {
-    const newPost = {
+export let addNewPost = () => {
+    let newPost = {
         id: 5,
-        postMessageItem: postText,
+        postMessageItem: state.profilePage.textareaText,
         postLikeItem: 0
     };
     state.profilePage.postElementData.push(newPost);
-    rerenderEntireTree(state)
+    state.profilePage.textareaText = ''
+    rerenderEntireTree()
 
 }
-
+export const subscribe = (observer) => {
+    rerenderEntireTree = observer;
+}
 export default state

@@ -7,9 +7,7 @@ import PostElement from "./PostElement/PostElement";
 const MyPosts = (props) => {
 
     const addNewPost = () => {
-        let newPostText = newPostElement.current.value;
-        props.addNewPost(newPostText)
-        newPostElement.current.value = ''
+        props.addNewPost()
     };
 
 
