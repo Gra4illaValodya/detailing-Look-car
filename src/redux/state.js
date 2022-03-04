@@ -33,7 +33,7 @@ let store = {
         _rerenderEntireTree(){
             console.log("State change")
         },
-    addNewPost() {
+    _addNewPost() {
         let newPost = {
             id: 5,
             postMessageItem: this._state.profilePage.textareaText,
@@ -44,10 +44,11 @@ let store = {
         this._rerenderEntireTree(this._state);
 
     },
-    updatePostText(postText) {
+    _updatePostText(postText) {
         store._state.profilePage.textareaText = postText;
        this._rerenderEntireTree(this._state);
     },
+
         addMessage(messageText) {
             let newMessage = {
                 id: 6,
@@ -64,6 +65,13 @@ let store = {
         this._rerenderEntireTree = observer;
     },
 
+    dispatch(action) {
+            if(action.type === "ADD-NEW-POST"){
+                this._addNewPost()
+            }else if (action.type === "UPDATE-POST-TEXT"){
+               this._updatePostText()
+            }
+    }
     }
 
 

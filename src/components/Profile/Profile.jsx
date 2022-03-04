@@ -12,9 +12,8 @@ const Profile = (props) => {
       <AvaDescription />
 
         <MyPosts postElementData={props.postElementData}
-                 addNewPost={props.addNewPost}
-                 textareaText={props.textareaText}
-                 updatePostText={props.updatePostText}/>
+                 dispatch={props.dispatch}
+                 textareaText={props.textareaText}/>
     </div>
 
 

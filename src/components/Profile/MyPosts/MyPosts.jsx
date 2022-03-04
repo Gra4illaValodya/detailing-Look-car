@@ -7,15 +7,13 @@ import PostElement from "./PostElement/PostElement";
 const MyPosts = (props) => {
 
     const addNewPost = () => {
-        props.addNewPost()
+        props.dispatch({ type: 'ADD-NEW-POST'})
     };
-
 
     const  freshText = () => {
         let text = newPostElement.current.value;
-        props.updatePostText(text)
-
-
+        let action = {type: 'UPDATE-POST-TEXT', postText: text};
+        props.dispatch(action)
     }
 
     let  postElement = props.postElementData
@@ -24,16 +22,13 @@ const MyPosts = (props) => {
                                              id={postElementMap.id} />)
 
 
-
     const newPostElement = React.createRef();
-
-
-
 
     return <div className={style.myPostsElement}>
         my posts
 
         <div className={style.addTextPost} >
+
             <textarea  onChange={freshText}
                        className={style.inputTextPost}
                       ref={newPostElement}
@@ -42,11 +37,10 @@ const MyPosts = (props) => {
         <div>
             <button className={style.inputTextPostButton}
                     onClick={addNewPost}>
+
                 Add Post
             </button>
         </div>
-
-
         <div> {postElement} </div>
     </div>
 
