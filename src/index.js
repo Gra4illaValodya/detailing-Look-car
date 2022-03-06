@@ -15,8 +15,9 @@ let rerenderEntireTree = (_state) => {
         <React.StrictMode>
 
             <App state={store.getState()}
-                 //addMessage={store.addMessage.bind(store)}// бінд не визиває функцію ,він бере функцію addNewPost  звязує з store, і метод bind повертає іншу функцію така сама як і addNewPost але всередині this буде  store
-                 dispatch={store.dispatch.bind(store)}>
+                 dispatch={store.dispatch.bind(store)}// бінд не визиває функцію ,він бере функцію dispatch  звязує з store, і метод bind повертає іншу функцію така сама як і dispatch але всередині this буде  store
+                 store={store}>
+
             </App>
 
         </React.StrictMode>,

@@ -1,7 +1,11 @@
 import React from "react";
 import style from './MyPosts.module.css'
 import PostElement from "./PostElement/PostElement";
-import {addNewPostActionCreator, updatePostActionCreator} from "../../../redux/state";
+import {
+    addNewPostActionCreator,
+
+    updateTextareaPostActionCreator
+} from "../../../redux/state";
 
 
 
@@ -10,12 +14,12 @@ import {addNewPostActionCreator, updatePostActionCreator} from "../../../redux/s
 const MyPosts = (props) => {
 
     const addNewPost = () => {
-        props.dispatch(addNewPostActionCreator())
+        props.dispatch(updateTextareaPostActionCreator())
     };
 
     const  updatePost = () => {
         let postText = newPostElement.current.value;
-        let action = updatePostActionCreator(postText)
+        let action = updateTextareaPostActionCreator(postText)
         props.dispatch( action)
     }
 

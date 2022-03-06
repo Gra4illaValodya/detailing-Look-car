@@ -30,11 +30,8 @@ const App = (props) => {
                                                  textareaText={props.state.profilePage.textareaText}/>}/>
 
                         <Route path="/dialog/*"
-                               element={<Dialogs dialogElementData={props.state.dialogPage.dialogElementData}
-                                                 messageElementData={props.state.dialogPage.messageElementData}
-                                                 dispatch={props.dispatch}
-                                                 textareaText={props.state.dialogPage.textareaText}
-                                                 updateMessageText={props.updateMessageText}/>}/>
+                               element={<Dialogs  store={props.store}
+                                                            />}/>
                     </Routes>
 
                 </div>
