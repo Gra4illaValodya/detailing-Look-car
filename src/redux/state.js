@@ -1,3 +1,8 @@
+export const ADD_NEW_POST =  "ADD-NEW-POST"
+export const UPDATE_POST = "UPDATE-POST"
+
+
+
 let store = {
         _state: {
             profilePage: {
@@ -33,22 +38,10 @@ let store = {
         _rerenderEntireTree(){
             console.log("State change")
         },
-    _addNewPost() {
-        let newPost = {
-            id: 5,
-            postMessageItem: this._state.profilePage.textareaText,
-            postLikeItem: 0
-        };
-        this._state.profilePage.postElementData.push(newPost);
-        this._state.profilePage.textareaText = '';
-        this._rerenderEntireTree(this._state);
-
-    },
-    _updatePostText(postText) {
+    updatePostText(postText) {
         store._state.profilePage.textareaText = postText;
        this._rerenderEntireTree(this._state);
     },
-
         addMessage(messageText) {
             let newMessage = {
                 id: 6,
@@ -56,24 +49,49 @@ let store = {
             }
             store._state.dialogPage.messageElementData.push(newMessage)
         },
-
     updateMessageText(messageText) {
         store._state.dialogPage.textareaText = messageText
         },
-
     subscribe (observer) {
         this._rerenderEntireTree = observer;
     },
-
     dispatch(action) {
-            if(action.type === "ADD-NEW-POST"){
-                this._addNewPost()
-            }else if (action.type === "UPDATE-POST-TEXT"){
-               this._updatePostText()
+            if(action.type === ADD_NEW_POST){
+                let newPost = {
+                    id: 5,
+                    postMessageItem: this._state.profilePage.textareaText,
+                    postLikeItem: 0
+                };
+                this._state.profilePage.postElementData.push(newPost);
+                this._state.profilePage.textareaText = '';
+                this._rerenderEntireTree(this._state);
+
+            }else if (action.type === UPDATE_POST ){
+                store._state.profilePage.textareaText = action.postText;
+                this._rerenderEntireTree(this._state);
+            }else if (action.type === "ADD-MESSAGE"){
+                let newMessage = {
+                    id: 6,
+                };
+                this._state.dialogPage.messageElementData.push(newMessage);
+
+
             }
+
     }
     }
 
+export const addNewPostActionCreator = () => {
+    return {
+        type: 'ADD-NEW-POST'
+    }
+}
+export const updatePostActionCreator = (text) => {
+    return {
+        type    : 'UPDATE-POST',
+        newText :text,
+    }
+}
 
 
 export default store
