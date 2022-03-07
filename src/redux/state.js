@@ -1,123 +1,60 @@
-import messageItem from "../components/Dialogs/MessageItem/MessageItem";
-
-export const ADD_NEW_POST = "ADD-NEW-POST";
-export const UPDATE_TEXTAREA_POST = "UPDATE-TEXTAREA-POST";
-
-export const SEND_MESSAGE = "SEND-MESSAGE";
-export const UPDATE_TEXTAREA_DIALOG = "UPDATE-TEXTAREA-DIALOG";
-
-
-
-
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogs-reducer";
+import sidebarReducer from "./sidebar-reducer";
 
 let store = {
     _state: {
         profilePage: {
-            postElementData: [
-                {id: 1, postMessageItem: "KYKYKY", postLikeItem: 0},
-                {id: 2, postMessageItem: "What are you taking about me ??? ", postLikeItem: 22},
-                {id: 3, postMessageItem: "YOYOYOYo ", postLikeItem: 65},
-                {id: 4, postMessageItem: "llllll ", postLikeItem: 3},
+            posts: [
+                {id: 1, message: 'Hi, how are you?', likesCount: 12},
+                {id: 2, message: 'It\'s my first post', likesCount: 11},
+                {id: 3, message: 'Blabla', likesCount: 11},
+                {id: 4, message: 'Dada', likesCount: 11}
             ],
-            textareaPost: "New post"
+            newPostText: 'it-kamasutra.com'
         },
-
-        dialogPage: {
-            dialogElementData: [
-                {id: 1, nameUserItem: "Vova"},
-                {id: 2, nameUserItem: "Yulia"},
-                {id: 3, nameUserItem: "Rulia"},
-                {id: 4, nameUserItem: "Igor"},
+        dialogsPage: {
+            dialogs: [
+                {id: 1, name: 'Dimych'},
+                {id: 2, name: 'Andrew'},
+                {id: 3, name: 'Sveta'},
+                {id: 4, name: 'Sasha'},
+                {id: 5, name: 'Viktor'},
+                {id: 6, name: 'Valera'}
             ],
-
-            messageElementData: [
-                {id: 1, messageItem: "Hi bro what up?"},
-                {id: 2, messageItem: "Not bat.I hear you are mother fucker, yes?"},
-                {id: 3, messageItem: "Yes bro I am fucking mother nigga"},
-                {id: 4, messageItem: "YOYOYOYO"},
-                {id: 5, messageItem: "bibby"}
+            messages: [
+                {id: 1, message: 'Hi'},
+                {id: 2, message: 'How is your it-kamasutra?'},
+                {id: 3, message: 'Yo'},
+                {id: 4, message: 'Yo'},
+                {id: 5, message: 'Yo'}
             ],
-            textareaDialog: ""
+            newMessageBody: ""
         },
+        sidebar: {}
     },
+    _callSubscriber() {
+        console.log('State changed');
+    },
+
     getState() {
-        return this._state
+        debugger;
+        return this._state;
     },
-    _rerenderEntireTree() {
-        console.log("State change")
-    },
-    // updatePostText(postText) {
-    //     store._state.profilePage.textareaPost = postText;
-    //     this._rerenderEntireTree(this._state);
-    // },
-    // addMessage(messageText) {
-    //     let newMessage = {
-    //         id: 6,
-    //         messageItem: messageText,
-    //     }
-    //     store._state.dialogPage.messageElementData.push(newMessage)
-    // },
-    // updateMessageText(messageText) {
-    //     store._state.dialogPage.textareaDialog = messageText
-    // },
     subscribe(observer) {
-        this._rerenderEntireTree = observer;
+        this._callSubscriber = observer;  // observer
     },
+
     dispatch(action) {
-        if (action.type === ADD_NEW_POST) {
-            let newPost = {
-                id: 5,
-                postMessageItem: this._state.profilePage.textareaText,
-                postLikeItem: 0
-            };
-            this._state.profilePage.postElementData.push(newPost);
-            this._state.profilePage.textareaPost = '';
-            this._rerenderEntireTree(this._state);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
 
-        else if (action.type === UPDATE_TEXTAREA_POST) {
-            store._state.profilePage.textareaPost = action.postText;
-            this._rerenderEntireTree(this._state);
-        }
-
-        else if (action.type === SEND_MESSAGE) {
-            let textareaDialog = this._state.dialogPage.textareaDialog
-            let newMesage = {
-                id : 6,
-                messageItem: textareaDialog
-            }
-            this._state.dialogPage.textareaDialog = '';
-            this._state.dialogPage.messageElementData.push(newMesage)
-            this._rerenderEntireTree(this._state);
-        }
-
-        else if (action.type === UPDATE_TEXTAREA_DIALOG) {
-            this._state.dialogPage.textareaDialog = action.text // зміємо state і я хочу сказати про це
-            this._rerenderEntireTree(this._state);  // цією функцією я говорю всім що я змінюю і передаю йому новий state і хочу перемалювати весь світ
-
-        }
+        this._callSubscriber(this._state);
     }
 }
 
 
-
-export const addNewPostActionCreator = () => {
-    return ({type: 'ADD-NEW-POST'})
-}
-export const updateTextareaPostActionCreator = (postText) => {
-    return ({type    : 'UPDATE-TEXTAREA-POST', newText : postText})
-}
-
-
-export const sendMessageActionCreator = () =>
-    ({type: SEND_MESSAGE})
-
-export const updateTextareaDialogActionCreator = (textareaDialog) =>
-    ({type:UPDATE_TEXTAREA_DIALOG,
-        textareaDialog: textareaDialog
-    })
-
-
-
-export default store
-window.state = store
+export default store;
+window.store = store;
+// store - OOP

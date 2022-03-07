@@ -1,28 +1,22 @@
-
 .dialogs {
     display: grid;
+    grid-template-columns: 2fr 10fr;
+}
 
-    grid-template-columns: 6fr 6fr;
-    grid-template-areas:
-    "user message message";
+.dialogsItems {
+    padding: 10px;
+    color: white;
 }
-.dialogElement {
-    grid-area: user;
-}
-.dialogItem {
 
-}
-.dialogItem .active {
+.dialogsItems .active {
     color: gold;
 }
 
-.messageElement {
-    grid-area: message;
+.messages {
+    padding: 10px;
 }
-.messageItem {
 
-}
-.inputTextMessage {
-    color: burlywood;
+.messages .message {
+    color: white;
 }
 
