@@ -3,8 +3,10 @@ import s from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
+import Dialogs from "./Dialogs";
+import {updateNewPostTextActionCreator} from "../../redux/profile-reducer";
 
-const Dialogs = (props) => {
+const DialogsContainer = (props) => {
 
     const state = props.store.getState().dialogsPage;
 
@@ -17,28 +19,16 @@ const Dialogs = (props) => {
         props.store.dispatch(sendMessageCreator());
     }
 
-    let onNewMessageChange = (e) => {
-        let body = e.target.value;
+    let onNewMessageChange = (text) => {
+        let action = updateNewPostTextActionCreator(text)
         // props.undateNewText(body)
-        props.store.dispatch(updateNewMessageBodyCreator(body));
+        props.store.dispatch(action);
     }
 
     return (
-        <div className={s.dialogs}>
-            <div className={s.dialogsItems}>
-                { dialogsElements }
-            </div>
-            <div className={s.messages}>
-                <div>{ messagesElements }</div>
-                <div>
-                    <div><textarea value={newMessageBody}
-                                   onChange={onNewMessageChange}
-                                   placeholder='Enter your message'/></div>
-                    <div><button onClick={onSendMessageClick}>Send</button></div>
-                </div>
-            </div>
-        </div>
+        <Dialogs onSendMessageClick={onSendMessageClick}
+                 onNewMessageChange={updateNewMessageBodyCreator}/>
     )
 }
 
-export default Dialogs;
+export default DialogsContainer;
