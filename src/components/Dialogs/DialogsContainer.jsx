@@ -13,12 +13,13 @@ const Dialogs = (props) => {
     let newMessageBody = state.newMessageBody;
 
     let onSendMessageClick = () => {
-
+        // props.onSendMessageClick
         props.store.dispatch(sendMessageCreator());
     }
 
     let onNewMessageChange = (e) => {
         let body = e.target.value;
+        // props.undateNewText(body)
         props.store.dispatch(updateNewMessageBodyCreator(body));
     }
 

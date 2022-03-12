@@ -1,10 +1,13 @@
 import React from 'react';
-import s from './Header.module.css';
+import s from './SideBar.module.css';
 
-const Header = () => {
-    return <header className={s.header}>
-        <img src='https://www.freelogodesign.org/Content/img/logo-ex-7.png' />
-    </header>
+const SideBar = () => {
+    return <div className={s.sidebar}>
+        <h1>SideBar</h1>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </div>
 }
 
-export default Header;
+export default SideBar;

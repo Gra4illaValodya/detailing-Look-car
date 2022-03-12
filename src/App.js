@@ -6,6 +6,8 @@ import Profile from './components/Profile/Profile';
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Routes} from "react-router";
+import SideBar from "./components/SideBar/SideBar";
+
 
 const App = (props) => {
     return (
@@ -19,9 +21,11 @@ const App = (props) => {
                            element={ <Dialogs store={props.store} /> }/>
 
                     <Route path='/profile'
-                           element={ <Profile
-                               profilePage={props.state.profilePage}
+                           element={ <Profile profilePage={props.state.profilePage}
                                dispatch={props.dispatch} /> }/>
+
+                    <Route path='/sidebar'
+                               element={<SideBar />}/>
                     </Routes>
                     </div>
             </div>

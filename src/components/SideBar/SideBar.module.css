@@ -1,9 +1,3 @@
-.header {
-    grid-area: h;
-    background-color: rgb(35,37,41);
+.sidebar {
+    background-color: mediumpurple;
 }
-
-.header img {
-    width: 20px;
-}
-

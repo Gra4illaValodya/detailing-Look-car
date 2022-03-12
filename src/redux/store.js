@@ -11,14 +11,14 @@ let store = {
                 {id: 3, message: 'Blabla', likesCount: 11},
                 {id: 4, message: 'Dada', likesCount: 11}
             ],
-            newPostText: 'it-kamasutra.com'
+            newPostText: 'Вводите сообщение...'
         },
         dialogsPage: {
             dialogs: [
-                {id: 1, name: 'Dimych'},
-                {id: 2, name: 'Andrew'},
-                {id: 3, name: 'Sveta'},
-                {id: 4, name: 'Sasha'},
+                {id: 1, name: 'Vova'},
+                {id: 2, name: 'Yulia'},
+                {id: 3, name: 'Igor'},
+                {id: 4, name: 'Rulia'},
                 {id: 5, name: 'Viktor'},
                 {id: 6, name: 'Valera'}
             ],
@@ -38,7 +38,6 @@ let store = {
     },
 
     getState() {
-
         return this._state;
     },
     subscribe(observer) {
