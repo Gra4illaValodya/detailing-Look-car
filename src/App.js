@@ -7,6 +7,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
 import {Routes} from "react-router";
 import SideBar from "./components/SideBar/SideBar";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
@@ -18,7 +19,7 @@ const App = (props) => {
                 <div className='app-wrapper-content'>
                     <Routes>
                     <Route path='/dialogs'
-                           element={ <Dialogs store={props.store} /> }/>
+                           element={ <DialogsContainer store={props.store} /> }/>
 
                     <Route path='/profile'
                            element={ <Profile store={props.store} /> }/>

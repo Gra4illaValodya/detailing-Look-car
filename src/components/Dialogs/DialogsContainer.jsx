@@ -8,26 +8,21 @@ import {updateNewPostTextActionCreator} from "../../redux/profile-reducer";
 
 const DialogsContainer = (props) => {
 
+
     const state = props.store.getState().dialogsPage;
 
-    let dialogsElements = state.dialogs.map( d => <DialogItem name={d.name} id={d.id} />  );
-    let messagesElements = state.messages.map( m => <Message message={m.message} /> );
-    let newMessageBody = state.newMessageBody;
-
     let onSendMessageClick = () => {
-        // props.onSendMessageClick
         props.store.dispatch(sendMessageCreator());
     }
 
-    let onNewMessageChange = (text) => {
-        let action = updateNewPostTextActionCreator(text)
-        // props.undateNewText(body)
-        props.store.dispatch(action);
+    let onNewMessageChange = (body) => {
+        props.store.dispatch(updateNewMessageBodyCreator(body))
     }
 
     return (
-        <Dialogs onSendMessageClick={onSendMessageClick}
-                 onNewMessageChange={updateNewMessageBodyCreator}/>
+        <Dialogs sendMessage={onSendMessageClick}
+                 undateNewText={onNewMessageChange}
+                 dialogsPage={state}/>
     )
 }
 
